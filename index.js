@@ -44,6 +44,7 @@ function full_request(){
         request('https://mixpanel.com/api/2.0/engage?'+engage_params, function(error, response, body){
             console.log("got ids");
             if(!error){
+                console.log(JSON.parse(body));
                 var ids = JSON.parse(body).results.map(function(user){
                     return user.$distinct_id.toString();
                 }), data = [];
