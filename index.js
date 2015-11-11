@@ -109,15 +109,17 @@ app.get('/', function (req, res) {
         full_request().then(function(data){
             console.log("Resolved all");
             res.set({
-                'Content-disposition': "attachment;filename=file.csv",
+                'Content-disposition': "attachment;filename="+new Date().toString()+".csv",
                 'Content-Type': 'text/csv'
             })
             res.send(toCSV(data));
         }, function(error){
             console.log(error);
+            res.send("Something went wrong with Mixpanel try again");
         });
     } catch(ex){
         console.error(ex);
+        res.send("Something went wrong with Oskar ask him about it");
     }
 
 
